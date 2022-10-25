@@ -1,0 +1,95 @@
+﻿@model work_01.Models.ViewModel.CarVM
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2 class="display-6">Add new Car</h2>
+                <div class="row mt-4 mb-3">
+                    @Html.LabelFor(x => x.CarName, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.CarName, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.CarName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.TypeId, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.DropDownListFor(x => x.TypeId, ViewBag.types as SelectList, "---Select---", new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.TypeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.Make, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Make, new { @class = "form-control r", @type="number" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Make, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.RecordDate, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.RecordDate, new { @class = "form-control r", @type = "date" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.RecordDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Pictures, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Pictures, new { @class = "form-control r", @type = "file" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Pictures, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.isAvailable, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.CheckBoxFor(x => x.isAvailable)
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.isAvailable, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-10 offset-2">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div id="msg">
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="mb-1">
+        <a class="btn btn-link" href="@Url.Action("Index","Cars")">Back to the list</a>
+    </div>
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $("#form0").attr("enctype", "multipart/form-data");
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}

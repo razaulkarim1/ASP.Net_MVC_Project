@@ -1,0 +1,45 @@
+﻿@model IEnumerable<work_01.Models.Car>
+@{
+    ViewBag.Title = "Report";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Car List</h2>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-link" href="@Url.Action("ExportCar","Cars")">Report PDF</a>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Car Id</th>
+                        <th>Car Name</th>
+                        <th>Type</th>
+                        <th>Make</th>
+                        <th>Record Date</th>
+                        <th>Picture</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CarId</td>
+                            <td>@item.CarName</td>
+                            <td>@item.Type.CarType</td>
+                            <td>@item.Make</td>
+                            <td>@item.RecordDate</td>
+                            <td>
+                                <img src="@Url.Content(item.PicturePath)" width="50" height="30" />
+                            </td>
+                            <td>@item.isAvailable</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

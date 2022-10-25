@@ -1,0 +1,60 @@
+﻿@model work_01.Models.ViewModel.RegisterVM
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="row mt-5">
+    <div class="col-10 offset-1">
+        @using (Html.BeginForm("Register", "Accounts", FormMethod.Post))
+        {
+            <div class="card w-50 border-1 mt-5" style="margin:0 auto;">
+                <div class="card-body">
+                    <div class="row">
+                        <img src="~/Images/lock1.png" style="width:45%;height:45%;margin:0 auto;" />
+                    </div>
+                    <hr class="mb-3" />
+                    <div class="row mb-3">
+                        <h2 class="fs-5 text-center">Register Here..</h2>
+                    </div>
+                    <div class="row mb-3">
+                        @Html.LabelFor(x => x.UserName, new { @class = "col-form-label col-4" })
+                        <div class="col-7">
+                            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control r" })
+                        </div>
+                        <div class="col-8 offset-3">
+                            @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        @Html.LabelFor(x => x.Password, new { @class = "col-form-label col-4" })
+                        <div class="col-7">
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control r", @type = "password" })
+                        </div>
+                        <div class="col-8 offset-3">
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        @Html.LabelFor(x => x.ConfirmPassword, new { @class = "col-form-label col-4" })
+                        <div class="col-7">
+                            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control r", @type = "password" })
+                        </div>
+                        <div class="col-8 offset-3">
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-8 offset-4">
+                            <button type="submit" class="btn btn-success btn-sm">Sign Up</button>
+                        </div>
+                        <p class="mt-2">
+                            If you have an account, you can Sign In!!
+                            @Html.ActionLink("Click Here..", "Login")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

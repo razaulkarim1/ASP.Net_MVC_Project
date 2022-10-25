@@ -1,0 +1,48 @@
+﻿@model IEnumerable<work_01.Models.Rent>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Car List</h2>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-warning btn-sm mb-2" href="@Url.Action("Create","Rent")">Add New</a>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>Car Name</th>
+                        <th>Customer Name</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        <th>RentFee</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Car.CarName</td>
+                            <td>@item.Customer.CustomerName</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.RentFee</td>
+                            <td>
+
+                                <a class="btn btn-info btn-sm" href="@Url.Action("Edit","Rent",new { id=item.Id})">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","Rent",new { id=item.Id})">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

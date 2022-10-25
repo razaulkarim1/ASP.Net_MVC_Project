@@ -1,0 +1,70 @@
+﻿@model work_01.Models.ViewModel.RentVM
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @using (Html.BeginForm("Create", "Rent", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <h2>Car Rent List</h2>
+                <div class="row mt-3 mb-3">
+                    @Html.LabelFor(x => x.CarId, new { @class = "col-form-label col-2" })
+                    <div class="col-6">
+                        @Html.DropDownListFor(x => x.CarId, ViewBag.cars as SelectList, "---Select---", new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.CarId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.CustomerId, new { @class = "col-form-label col-2" })
+                    <div class="col-6">
+                        @Html.DropDownListFor(x => x.CustomerId, ViewBag.customers as SelectList, "---Select---", new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.CustomerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.StartDate, new { @class = "col-form-label col-2" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control r", @type = "date" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.EndDate, new { @class = "col-form-label col-2" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control r", @type = "date" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(x => x.RentFee, new { @class = "col-form-label col-2" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.RentFee, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.RentFee, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-10 offset-2">
+                        <input type="submit" class="btn btn-success" value="Save" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div>
+            <a href="@Url.Action("Index","Rent")">Back to list</a>
+        </div>
+    </div>
+</div>
+

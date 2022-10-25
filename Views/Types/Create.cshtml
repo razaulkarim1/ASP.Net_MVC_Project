@@ -1,0 +1,26 @@
+﻿@model work_01.Models.Type
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @using (Html.BeginForm("Create", "Types", FormMethod.Post))
+            {
+                <h2>Add New Types</h2>
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.CarType, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.CarType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CarType, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="form-group mb-3">
+                    <input type="submit" value="Create" class="btn btn-md btn-success" />
+                </div>
+                @Html.ActionLink("View Customer List", "Index")
+            }
+        </div>
+    </div>
+</div>
+
